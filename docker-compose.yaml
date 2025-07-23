@@ -36,12 +36,19 @@ services:
     container_name: mariadb
     restart: always
     network_mode: host
+    security_opt:
+      - seccomp=unconfined
+    cap_add:
+      - SYS_ADMIN
+      - SYS_RESOURCE
     environment:
       - TZ=Asia/Shanghai
       - MARIADB_ROOT_PASSWORD=password
     volumes:
       - "./mariadb/data:/var/lib/mysql"
       - "./mariadb/conf.d:/etc/mysql/mariadb.conf.d"
+      - "/tmp:/tmp:rw"
+      - "/sys/fs/cgroup:/sys/fs/cgroup:rw" 
 
   redis:
     image: redis
