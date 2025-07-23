@@ -42,7 +42,6 @@ services:
     volumes:
       - "./mariadb/data:/var/lib/mysql"
       - "./mariadb/conf.d:/etc/mysql/mariadb.conf.d"
-      - "/gd/db_backup:/backup"
 
   redis:
     image: redis
